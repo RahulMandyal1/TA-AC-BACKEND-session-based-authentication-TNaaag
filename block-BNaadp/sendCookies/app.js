@@ -21,17 +21,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 //adding the cookies parser as a middelware so we can  and send the cookies 
 app.use(cookieParser());
 app.use((req ,res,next)=>{
-  res.cookie('name' ,"Rahul thakur");
+  // res.cookie('name' ,"Rahul thakur");
+  console.log(req.cookies.name);
   next(); 
 });
 // sending the  cookies on the user browsers 
 //when a user request on any route rightnow the cookie will also be passed in the 
 //req route because client already has that cookie in his browser so we are jsut 
 //accessing here 
-app.use('/' ,(req ,res)=>{
-  console.log('The name of the user is :'+req.cookie.name);
-  res.send('username is '+req.cookie.name);
-});
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
