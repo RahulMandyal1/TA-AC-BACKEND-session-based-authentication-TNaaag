@@ -4,8 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const  mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+
 
 // Establish a connection between the server and our application
 mongoose.connect('mongodb://127.0.0.1:27017/test',(err)=>{
