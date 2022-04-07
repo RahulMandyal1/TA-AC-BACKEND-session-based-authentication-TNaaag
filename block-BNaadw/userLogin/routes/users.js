@@ -79,16 +79,11 @@ router.post("/login", async (req, res) => {
 });
 
 // logout user 
-router.get('/logout' , async(req ,res)=>{
+router.get('/logout' ,(req ,res)=>{
   let id  = req.session.userId;
- try{
   req.session.destroy();
-  res.clearCookie(connect.sid);
+  res.clearCookie('connect.sid');
   res.redirect('/users/login');
- }
- catch(err){
-
- }
 })
 
 module.exports = router;

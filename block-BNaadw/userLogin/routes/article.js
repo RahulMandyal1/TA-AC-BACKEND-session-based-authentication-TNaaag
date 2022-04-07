@@ -7,9 +7,10 @@ let Comment = require("../models/comments");
 router.get("/new", (req, res) => {
     console.log(req.session.userId);
   if(req.session.userId){
-    res.render("addarticle");
+    return  res.render("addarticle");
   }
-  let loginerror = req.flash('loginerror','You need to login to add a new article')
+  let loginerror = req.flash('loginerror','You need to login to add a new article');
+   res.render('loginfirst',{loginerror : loginerror});
 });
 
 router.get("/", async (req, res) => {
@@ -17,7 +18,7 @@ router.get("/", async (req, res) => {
     let allArticles = await Article.find({});
     res.render("articles", { articles: allArticles });
   } catch (err) {
-    res.statusCode(404).redirect("/articles/new");
+    res.redirect("/articles/new");
   }
 });
 
