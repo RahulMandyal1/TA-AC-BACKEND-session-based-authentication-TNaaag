@@ -1,0 +1,26 @@
+<%- include('./partials/cdnlink.ejs') %>
+
+<%products.forEach(cv=>{%>
+<div class="max-w-sm rounded overflow-hidden shadow-lg">
+    <img class="w-full" src="/uploads/<%= cv.image%>">
+    <div class="px-6 py-4">
+      <div class="font-bold text-xl mb-2"><%= cv.name%></div>
+      <div class="flex justify-between">
+        <p class="text-gray-700 text-base">
+            Price : <%= cv.price%>
+        </p>
+        <p class="text-gray-700 text-base">
+            in Stock : <%= cv.quantity%>
+        </p>
+        <p class="text-gray-700 text-base">
+            Total likes : <%= cv.likes%>
+        </p>
+      </div>
+    </div>
+    <div class="px-6 pt-4 pb-2 flex justify-between">
+      <button class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><a href="/products/edit/<%=cv._id%>">edit</a></button>
+      <button class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><a href="/products/delete<%=cv._id%>">delete</a></button>
+      <button class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><a href="/products/like<%=cv._id%>">like</a></button>
+    </div>
+  </div>
+<%})%>
