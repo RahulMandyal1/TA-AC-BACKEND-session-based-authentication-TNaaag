@@ -3,24 +3,23 @@
     >Ecommerce Website</a
   >
   <div class="menus-container">
-      <!-- if the user is a registered user then only he will  be able to see the logout button  -->
-    <% if(isAdmin ||   isRegistered) {%>
+    <!-- if the user is a registered user then only he will  be able to see the logout button  -->
+    <% if(isAdmin || isRegistered) {%>
     <a
       href="/users/logout"
       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
       >logout</a
     >
-    <%}%> 
+    <%}%>
 
     <!-- //get a  registered user button is the user is not registered  -->
-    <% if(!isAdmin && !  isRegistered) {%>
-        <a
-          href="/users/register/new"
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-          >sign up </a
-        >
-        <%}%> 
-    <% if(isAdmin) {%>
+    <% if(!isAdmin && ! isRegistered) {%>
+    <a
+      href="/users/register/new"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      >sign up
+    </a>
+    <%}%> <% if(isAdmin) {%>
     <a
       href="/products/new"
       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
