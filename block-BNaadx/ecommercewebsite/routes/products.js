@@ -31,10 +31,10 @@ router.get("/", async (req, res) => {
       isAdmin = false;
       isRegistered = false;
     }
-    // if the user is is isRegistered then check for  the user is a admin or not 
-    if(isRegistered ===true){
-      let user =  await User.findById(userId);
-      if(user.isadmin ===true){
+    // if the user is is isRegistered then check for  the user is a admin or not
+    if (isRegistered === true) {
+      let user = await User.findById(userId);
+      if (user.isadmin === true) {
         isAdmin = true;
       }
     }
