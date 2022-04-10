@@ -92,57 +92,12 @@ router.post("/login",  async (req, res) => {
 // logout user clear the cookies on the client side as well as destroy the session on
 // the server  side  so the user  session is completely removed
 
-router.get("users/logout", async function (req, res) {
-  try {
-    req.session.destroy();
-    req.clearCookie("connect.sid");
-    res.redirect("allprodcuts");
-  } catch (err) {
-    // res.redirect('/users');
-  }
-});
+router.get('/logout' ,(req ,res)=>{
+  req.session.destroy();
+  res.clearCookie('connect.sid');
+  res.redirect('/users/login');
+})
 
-// try{
-//   let { email, password } = req.body;
-//   // if both the password and email are not passed by the user then
-//   if (!email&& !password===0) {
-//     req.flash("bothrequired", "both password and email is required");
-//     return res.redirect('/users/login');
-//   }
-//   // if the email is not passed  by the user then
-//   if (!email) {
-//     req.flash("emailrequired", "email is required");
-//     return res.redirect('/users/login');
-//   }
-//   // if the password is not passed by the user
-//   if (!password) {
-//     req.flash("passwordrequired", "password is required");
-//     return res.redirect('/users/login');
-//   }
 
-//   // Checking  the user is  a registered user or not
-
-//   let user = await User.findOne({ email: email });
-//   // if the email is not registered then thorough an error
-//   if (!user) {
-//     req.flash("notregistered", "user is not registered");
-//     return res.redirect('/users/login');
-//   }
-//   //  if(!user) return console.log('user not found');
-//   //  if  the user is found then match the password .
-//   let isMatched = await bcrypt.compare(password, user.password);
-//   //  if password not matched then it will return back to the login page with a error message
-//   if (!isMatched) {
-//     req.flash("wrongPassword", "password not matched please try again");
-//     return res.redirect("/users/login");
-//   }
-//   if (isMatched) {
-//     req.session.userId = user._id;
-//     return res.redirect("/products");
-//   }
-// }
-// catch(err){
-//   console.log('getting an error '+err);
-// }
 
 module.exports = router;

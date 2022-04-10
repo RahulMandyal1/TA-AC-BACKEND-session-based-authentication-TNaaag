@@ -1,7 +1,31 @@
-<header class="flex justify-between py-5 px-[9%]">
-    <a href="/products" class="logo">Ecommerce Website</a>
-    <div class="menus-container">        
-        <a href="/users/logout" class="text-white bg-blue-700 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">logout</a>
-        <a href="/products/new"  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">add product</a>
-    </div>
+<header class="flex justify-between py-5 px-[9%] bg-blue-600">
+  <a href="/products" class="logo text-xl font-extrabold text-white"
+    >Ecommerce Website</a
+  >
+  <div class="menus-container">
+      <!-- if the user is a registered user then only he will  be able to see the logout button  -->
+    <% if(isAdmin ||   isRegistered) {%>
+    <a
+      href="/users/logout"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      >logout</a
+    >
+    <%}%> 
+
+    <!-- //get a  registered user button is the user is not registered  -->
+    <% if(!isAdmin && !  isRegistered) {%>
+        <a
+          href="/users/register/new"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          >sign up </a
+        >
+        <%}%> 
+    <% if(isAdmin) {%>
+    <a
+      href="/products/new"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      >add product</a
+    >
+    <%}%>
+  </div>
 </header>

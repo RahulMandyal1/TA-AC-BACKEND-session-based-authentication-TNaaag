@@ -23,10 +23,29 @@ const upload = multer({ storage: storage });
 // both admin and normal user can access this page
 router.get("/", async (req, res) => {
   try {
+    let userId = req.session.userId;
+    let isRegistered = true;
+    let isAdmin = false;
+    // if the user is not isRegistered
+    if (!userId) {
+      isAdmin = false;
+      isRegistered = false;
+    }
+    // if the user is is isRegistered then check for  the user is a admin or not 
+    if(isRegistered ===true){
+      let user =  await User.findById(userId);
+      if(user.isadmin ===true){
+        isAdmin = true;
+      }
+    }
     let allproducts = await Products.find({});
-    res.render("products", { products: allproducts });
+    return res.render("products", {
+      products: allproducts,
+      isAdmin: isAdmin,
+      isRegistered: isRegistered,
+    });
   } catch (err) {
-    res.redirect("/products");
+    return res.redirect("/");
   }
 });
 
@@ -38,7 +57,7 @@ router.get("/new", async (req, res) => {
     let userid = req.session.userId;
     let user = await User.findById(userid);
     if (user.isadmin === true) {
-      return res.render("addproducts");
+      return res.render("addproduct");
     }
     return res.render("users/login");
   } catch (err) {
@@ -87,7 +106,7 @@ router.post("/:id", upload.single("image"), async (req, res) => {
 });
 
 // delete the product  only author can delete it
-router.post("/:id/delete", async (req, res) => {
+router.get("/:id/delete", async (req, res) => {
   try {
     let id = req.params.id;
     let userid = req.session.userId;
@@ -104,7 +123,7 @@ router.post("/:id/delete", async (req, res) => {
 });
 
 // like the product only user can like the product
-router.post("/:id/like", async (req, res) => {
+router.get("/:id/like", async (req, res) => {
   try {
     let id = req.params.id;
     let userid = req.session.userId;
@@ -122,7 +141,7 @@ router.post("/:id/like", async (req, res) => {
 });
 
 //dislike the product
-router.post("/:id/dislike", async (req, res) => {
+router.get("/:id/dislike", async (req, res) => {
   try {
     let id = req.params.id;
     let userid = req.session.userId;
